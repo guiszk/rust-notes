@@ -22,6 +22,6 @@ Doesn't support HTML input.
 
 ## about
 
-Uses rust, handlebars templates, actix as web framework, as well as HTML, CSS and JavaScript.
+Uses rust, handlebars templates, actix as web framework, HTML, CSS and JavaScript.
 
 source code [here](https://github.com/guiszk/rust-notes)

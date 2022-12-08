@@ -4,7 +4,7 @@ Markdown notes app built with rust.
 
 ## usage
 
-Live app [here](url).
+Live app [here](https://rust-notes.onrender.com).
 
 `cargo run` to run locally (follow instructions on `main()`).
 
