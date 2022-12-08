@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>{{notes_folder}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">    
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+
+<body>
+    <a class="backbutton" href="/">&#8592; back</a>
+    <h1 class="text-center">{{notes_folder}}</h1>
+    <div class="text-center">
+        {{#each notes}}
+            <div class="inline separate">
+            <nobr>
+                    <a class="black nodecor boldhover" href="#{{this}}">&nbsp;{{this}}</a>
+            </nobr>
+            </div>
+        {{/each}}
+    <div>
+    <br>
+
+    <orm> 
+        {{#each note_contents}}
+        <details open id={{lookup this 0}} class="text-left">
+                <summary class="summary">{{lookup this 0}}</summary>
+                <div class="notecontent block">
+                    {{{lookup this 1}}}
+                </div>
+                <form id="{{lookup this 0}}_form" class="hidden" action="/edit" method="post">
+                    <input class="hidden" name="foldername" value="{{../notes_folder}}">
+                    <input class="hidden" name="title" value="{{lookup this 0}}">
+                    <textarea name="data" required>{{lookup this 2}}</textarea>
+                    <br>
+                    <p class="backbutton inline" onclick="edittoggle('{{lookup this 0}}');">[cancel]</p>
+                    <p class="backbutton inline" onclick="document.getElementById('{{lookup this 0}}_form').submit();">[submit]</p>
+                </form>
+                <form id="{{lookup this 0}}_delete" class="hidden" action="/delete" method="post">
+                    <input class="hidden" name="foldername" value="{{../notes_folder}}">
+                    <input class="hidden" name="title" value="{{lookup this 0}}">
+                    <p id="{{lookup this 0}}_deletebutton" class="deletebutton block" onclick="delcheck('{{lookup this 0}}');">[delete]</p>
+                </form>
+                
+                <p class="backbutton bgwhite block" onclick="edittoggle('{{lookup this 0}}');">[edit]</p>
+                <p class="backbutton block" onclick="clipcopy(`{{lookup this 0}}`, this);">[copy]</p>
+                <br>
+        </details> 
+        {{/each}}
+        {{#unless note_contents}}
+            <p class="gray">This folder is empty, add some notes!</p>
+        {{/unless}}
+        <form id="{{notes_folder}}_delete" action="/deletefolder" method="post">
+            <input class="hidden" name="foldername" value="{{notes_folder}}">
+            <p id="{{notes_folder}}_deletebutton" class="margin-t deletebutton" onclick="delcheck('{{notes_folder}}');">[delete folder]</p>
+        </form>
+    </div>
+
+    <script>
+        function edittoggle(x) {
+            div = document.getElementById(x);
+            notecontent = div.children[1];
+            editarea = div.children[2];
+            editb = div.children[3];
+            confirmb = div.children[4];
+            backb = div.children[5];
+            
+            visswap(notecontent);
+            visswap(editarea);
+            visswap(editb);
+            visswap(confirmb);
+            visswap(backb);
+        }
+
+        // toggle visibility
+        function visswap(x) {
+            if(x.classList.contains("block")) {
+                x.classList.replace("block", "hidden");
+            } else {
+                x.classList.replace("hidden", "block");
+            }
+        }
+
+        // confirm delete
+        function delcheck(x) {
+            el = document.getElementById(x+"_deletebutton");
+            if(el.innerHTML.includes("delete")) {
+                el.innerHTML = "[confirm ?]";
+            } else {
+                document.getElementById(x+"_delete").submit();
+            }
+        }
+
+        // copy to clipboard
+        function clipcopy(x, y) {
+            y.innerHTML = "[copied]";
+
+            div = document.getElementById(x);
+            notecontent = div.children[2][2].innerText;
+
+            var elem = document.createElement("textarea");
+            document.body.appendChild(elem);
+            //console.log(notecontent);
+            elem.value = notecontent;
+            elem.select();
+            document.execCommand("copy");
+            document.body.removeChild(elem);
+        }
+    </script>
+</body>
+
+</html>

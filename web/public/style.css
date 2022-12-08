@@ -1,0 +1,184 @@
+html {
+    font-family: -apple-system,
+        BlinkMacSystemFont,
+        "Roboto",
+        "Segoe UI",
+        "Helvetica Neue",
+        "Lucida Grande",
+        Arial,
+        sans-serif;
+}
+
+.red {
+    color:red;
+}
+
+.redbg {
+    background-color: red;
+}
+
+.black {
+    color: black;
+}
+
+.gray {
+    color: gray;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.shadow {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.padding {
+    padding: 14px 14px;
+}
+
+.max {
+    max-width: 10px;
+}
+
+.nodecor {
+    text-decoration: none;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.underlinehover {
+    text-decoration: none;
+}
+.underlinehover:hover {
+    text-decoration: underline;
+}
+
+.boldhover:hover {
+    font-weight: bold;
+}
+
+.margin-t {
+    margin-top: 47px;
+}
+.margin-b {
+    margin-bottom: 47px;
+}
+.margin-b-small {
+    margin-bottom: 20px;
+}
+
+.separate {
+    border-left: solid lightgray 2px;
+    /* border-right: solid transparent 2px; */
+}
+.separate:first-child {
+    border-left: none;
+}
+
+.summary {
+    font-weight: bold;
+    font-size: 130%;
+    
+}
+
+.backbutton {
+    color: gray;
+    text-decoration: none;
+    font-size: initial;
+    font-weight: normal;
+    cursor: grab;
+}
+.backbutton:hover {
+    color: rgb(66, 66, 66);
+}
+
+.deletebutton {
+    color: red;
+    text-decoration: none;
+    font-size: initial;
+    font-weight: normal;
+    cursor: grab;
+}
+
+.deletebutton:hover {
+    color: rgb(139, 0, 0);
+}
+
+.autowidth {
+    width: fit-content;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.postform {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 47px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+input {
+    padding: 15px 22px;
+    margin: 10px 5px;
+    box-sizing: border-box;
+    font-family: monospace;
+    /* border: 0px; */
+}
+
+textarea {
+    padding: 15px 22px;
+    margin: 10px 5px;
+    max-width: 70%;
+}
+
+.bgwhite {
+    background-color: transparent;
+}
+
+input[type=submit] {
+    background-color: brown;
+}
+
+.confirmbutton {
+    background-color: brown;
+}
+.confirmbutton:hover {
+    color: rgb(66, 66, 66);
+}
+
+.borderhover {
+    border: 0px;
+}
+.borderhover:hover {
+    border: inherit;
+}
+
+.flex {
+    display: flex;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.block {
+    display: block;
+}
+
+.contents {
+    display: contents;
+}
+
+.hidden {
+    display: none;
+}

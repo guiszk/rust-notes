@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/public/style.css">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+</head>
+
+<body>
+    <h1 class="text-center">notes!</h1>
+    <br>
+    <div class="text-center">
+        {{#each notes}}
+        <nobr>
+        <div class="margin-b">
+            <a class="padding shadow black nodecor boldhover" href="./notes/{{lookup this 0}}">{{lookup this 1}}</a>
+        </div>
+        </nobr>
+        {{/each}}
+    </div>
+    
+    <h2 class="text-center">new note</h2>
+    <div class="text-center shadow postform">
+        <form action=/post method="post">
+            <input class="margin-b-small" placeholder="folder name" list="foldername" name="foldername" required>
+            <datalist id="foldername">
+                {{#each notes}}
+                <option value="{{lookup this 0}}">{{lookup this 0}}</option>
+                {{/each}}
+            </datalist>
+            <br>
+            <input class="margin-b-small" placeholder="note title" name="title" required>
+            <br>
+            <textarea class="margin-b-small" placeholder="data" name="data" required></textarea>
+            <br>
+            <button class="padding boldhover bgwhite" type=submit>Submit!</button>
+        </form>
+    </div>
+</body>
+
+</html>
