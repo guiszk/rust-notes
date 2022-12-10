@@ -4,7 +4,7 @@ Markdown notes app built with rust.
 
 ## usage
 
-Live app [here](url).
+Live app [here](../).
 
 Run locally:
 `cargo run`
@@ -19,6 +19,7 @@ Doesn't support HTML input.
 - click to copy note content
 - create/edit/delete notes
 - create/delete folders
+- auto-add underscores to replace spaces in folder and note names
 
 ## about
 

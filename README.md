@@ -16,6 +16,7 @@ Markdown notes app built with rust.
 - click to copy note content
 - create/edit/delete notes
 - create/delete folders
+- auto-add underscores to replace spaces in folder and note names
 
 ## about
 

@@ -10,7 +10,7 @@ html {
 }
 
 .red {
-    color:red;
+    color: red;
 }
 
 .redbg {
@@ -56,6 +56,7 @@ html {
 .underlinehover {
     text-decoration: none;
 }
+
 .underlinehover:hover {
     text-decoration: underline;
 }
@@ -67,17 +68,28 @@ html {
 .margin-t {
     margin-top: 47px;
 }
+
 .margin-b {
     margin-bottom: 47px;
 }
+
 .margin-b-small {
     margin-bottom: 20px;
+}
+
+.small {
+    font-size: smaller;
+}
+
+.grabhover:hover {
+    cursor: pointer;
 }
 
 .separate {
     border-left: solid lightgray 2px;
     /* border-right: solid transparent 2px; */
 }
+
 .separate:first-child {
     border-left: none;
 }
@@ -85,7 +97,7 @@ html {
 .summary {
     font-weight: bold;
     font-size: 130%;
-    
+
 }
 
 .backbutton {
@@ -95,6 +107,7 @@ html {
     font-weight: normal;
     cursor: grab;
 }
+
 .backbutton:hover {
     color: rgb(66, 66, 66);
 }
@@ -152,6 +165,7 @@ input[type=submit] {
 .confirmbutton {
     background-color: brown;
 }
+
 .confirmbutton:hover {
     color: rgb(66, 66, 66);
 }
@@ -159,6 +173,7 @@ input[type=submit] {
 .borderhover {
     border: 0px;
 }
+
 .borderhover:hover {
     border: inherit;
 }

@@ -15,16 +15,16 @@
     <div class="text-center">
         {{#each notes}}
         <nobr>
-        <div class="margin-b">
-            <a class="padding shadow black nodecor boldhover" href="./notes/{{lookup this 0}}">{{lookup this 1}}</a>
-        </div>
+            <div class="margin-b">
+                <a class="padding shadow black nodecor boldhover" href="./notes/{{lookup this 0}}">{{lookup this 1}}</a>
+            </div>
         </nobr>
         {{/each}}
     </div>
-    
+
     <h2 class="text-center">new note</h2>
     <div class="text-center shadow postform">
-        <form action=/post method="post">
+        <form id="postform" action=/post method="post">
             <input class="margin-b-small" placeholder="folder name" list="foldername" name="foldername" required>
             <datalist id="foldername">
                 {{#each notes}}
@@ -36,9 +36,27 @@
             <br>
             <textarea class="margin-b-small" placeholder="data" name="data" required></textarea>
             <br>
-            <button class="padding boldhover bgwhite" type=submit>Submit!</button>
+            <p style="cursor: pointer" class="padding boldhover bgwhite" onclick="submitform();">Submit!</p>
         </form>
     </div>
+
+    <script>
+        function submitform() {
+            el = document.getElementById("postform")
+            fname = el.children[0].value
+            title = el.children[3].value
+            content = el.children[5].value
+            if (fname.includes(" ")) {
+                fname = fname.replaceAll(" ", "_");
+            }
+            if (title.includes(" ")) {
+                title = title.replaceAll(" ", "_");
+            }
+            if (fname && title && content) {
+                el.submit();
+            }
+        }
+    </script>
 </body>
 
 </html>

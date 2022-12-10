@@ -18,7 +18,7 @@ async fn index(hb: Data<Handlebars<'_>>) -> impl Responder {
     for i in 0..note_paths_full.len() {
         let individual_paths = listdir(note_paths_full[i].to_string(), false);
         let numnotes = individual_paths.len().to_string();
-        let newname = "".join(&[&note_paths[i], " (", &numnotes, ")"]);
+        let newname = "".join([&note_paths[i], " (", &numnotes, ")"]);
         newnote_paths[i] = newname;
     }
     
@@ -50,7 +50,7 @@ pub struct MyParams {
 async fn handle_post(hb: Data<Handlebars<'_>>, params: web::Form<MyParams>)  -> impl Responder {
     // get all folders
     let folder_paths = listdir("notes".to_string(), false); //test, fun, school
-    let full_folder_path = "".join(&["./notes/", &params.foldername]);
+    let full_folder_path = "".join(["./notes/", &params.foldername]);
 
     // if path doesn't exist, create dir
     if ! folder_paths.contains(&params.foldername) {
@@ -62,10 +62,10 @@ async fn handle_post(hb: Data<Handlebars<'_>>, params: web::Form<MyParams>)  -> 
     let fulltitle: String = if params.title.ends_with(".md") {
         params.title.clone()
     } else {
-        "".join(&[&params.title, ".md"])
+        "".join([&params.title, ".md"])
     };
     
-    let fullnotepath: String = "".join(&["./notes/", &params.foldername, "/", &fulltitle]);        
+    let fullnotepath: String = "".join(["./notes/", &params.foldername, "/", &fulltitle]);        
 
     // check if note exists
     if ! existing_note_paths.contains(&fulltitle) {
@@ -91,17 +91,16 @@ fn listdir(x: String, fullpath: bool) -> Vec<String> {
     let mut split_vec: Vec<String> = vec![];
     for path in paths {
         let path_string = path.unwrap().path().display().to_string();
-        let vec: Vec<&str> = path_string.split("/").collect();
+        let vec: Vec<&str> = path_string.split('/').collect();
         
         if fullpath {
-            if ! vec[vec.len()-1].starts_with(".") { //skip dotfiles (.DS_Store)
+            if ! vec[vec.len()-1].starts_with('.') { //skip dotfiles (.DS_Store)
                 split_vec.push(path_string);
             }
-        } else {
-            if ! vec[vec.len()-1].starts_with(".") {
-                split_vec.push(vec[vec.len()-1].to_string());
-            }
+        } else if ! vec[vec.len()-1].starts_with('.') {
+             split_vec.push(vec[vec.len()-1].to_string());
         }
+        
     }
     split_vec
 }
@@ -113,11 +112,11 @@ fn listdir(x: String, fullpath: bool) -> Vec<String> {
 
 //edit notes
 async fn handle_edit(hb: Data<Handlebars<'_>>, params: web::Form<MyParams>) -> impl Responder {
-    let fullnotepath = "".join(&["./notes/", &params.foldername, "/", &params.title]);
+    let fullnotepath = "".join(["./notes/", &params.foldername, "/", &params.title]);
 
     // rewrite file with new data
     let mut file = fs::File::create(fullnotepath).expect("Error opening file");
-    file.write(params.data.as_bytes()).expect("Error writing to file");
+    file.write_all(params.data.as_bytes()).expect("Error writing to file");
 
     let data = json!({
         "notes_folder": params.foldername,
@@ -137,7 +136,7 @@ pub struct DelParams {
     title: String,
 }
 async fn handle_delete(hb: Data<Handlebars<'_>>, params: web::Form<DelParams>) -> impl Responder {
-    let fullnotepath = "".join(&["./notes/", &params.foldername, "/", &params.title]);
+    let fullnotepath = "".join(["./notes/", &params.foldername, "/", &params.title]);
 
     //println!("deleting {}", fullnotepath);
     fs::remove_file(fullnotepath).expect("Error deleting file");
@@ -159,7 +158,7 @@ pub struct FolderDelParams {
     foldername: String,
 }
 async fn handle_deletefolder(hb: Data<Handlebars<'_>>, params: web::Form<FolderDelParams>) -> impl Responder {
-    let fullnotepath = "".join(&["./notes/", &params.foldername]);
+    let fullnotepath = "".join(["./notes/", &params.foldername]);
 
     fs::remove_dir_all(fullnotepath).expect("Error deleting folder");
 
@@ -177,14 +176,14 @@ async fn handle_deletefolder(hb: Data<Handlebars<'_>>, params: web::Form<FolderD
 
 async fn folders(path: web::Path<String>, hb: Data<Handlebars<'_>>) -> impl Responder {
     // add ./notes/ prefix
-    let fullpath = "".join(&["./notes/", &path.to_string()]);
+    let fullpath = "".join(["./notes/", &path.to_string()]);
 
     let note_paths = listdir(fullpath.clone(), false);
-    let note_paths_full = listdir(fullpath.clone(), true);
+    let note_paths_full = listdir(fullpath, true);
     let mut contents: Vec<String> = vec![];
     let mut og_contents: Vec<String> = vec![];
     for i in &note_paths_full {
-        let res = fs::read_to_string(i.to_string()).expect("Error reading file.");
+        let res = fs::read_to_string(i).expect("Error reading file.");
         
         og_contents.push(res.clone());
         let html_output = render(res.as_str());
