@@ -215,7 +215,7 @@ async fn folders(path: web::Path<String>, hb: Data<Handlebars<'_>>) -> impl Resp
 async fn main() -> io::Result<()> {
     //let address = "https://rust-notes.onrender.com".to_string();
     // comment the line above and uncomment the line below to run locally
-    let address = "localhost:8080".to_string();
+    let address = "0.0.0.0:8080".to_string();
 
     let template_service = {
         let mut handlebars = Handlebars::new();
