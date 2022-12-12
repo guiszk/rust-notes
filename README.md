@@ -4,7 +4,7 @@ Markdown notes app built with rust.
 
 ## usage
 
-`cargo run` to run locally (follow instructions on `main()`).
+`cargo run` to run locally.
 
 `data` input converts markdown into HTML, and doesn't support HTML input.
 
