@@ -239,5 +239,5 @@ async fn main() -> io::Result<()> {
     HttpServer::new(server)
         .bind(address)?
         .run()
-        .await
+        //.await
 }
